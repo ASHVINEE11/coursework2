@@ -1,1 +1,0 @@
-print("Isha is my best friend")
