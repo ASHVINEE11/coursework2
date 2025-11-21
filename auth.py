@@ -1,5 +1,6 @@
 import bcrypt
 import os
+import string
 
 USER_DATA_FILE = "users.txt"
 
@@ -58,6 +59,46 @@ def login_user(username, password):
     with open("users.txt", "r") as f:
         for line in f:
             user, stored_hash = line.strip().split(",", 1)
-    if user == username
+    if user == username:
         return verify_password(password< stored_hash)
     return False
+
+def validate_username(username):
+    username = ("Enter username:")
+    if len(username) < 3:
+        return False
+    print("Username must be at least 3 characters long.")
+    if username.isalnum() == False:
+        print("username can only contains numbers and letters.")
+        return False
+    print("Username is valid.")
+
+def validate_password(password):
+    password = ("Enter password: ")
+    if len(password) < 8:
+        print("Password must be at least 8 characters long.")
+    else:
+        print("password is valid")
+        return
+    has_letter == False
+    for c in password:
+        has_letter = True
+        break
+    if has_letter == False:
+        print("Password must contain at  least one letter ")
+        return
+        has_digit = False
+        for c in password:
+            if c.isdigit():
+                has_digit = True
+                break
+        if has_digit == False:
+            print("Password must contain at least one number.")
+            return
+        print("Password is valid!")
+
+
+
+
+
+
