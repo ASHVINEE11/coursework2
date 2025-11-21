@@ -52,3 +52,12 @@ def user_exists(username):
                 return True
     return False
 
+def login_user(username, password):
+    if not os.path.exists("users.txt"):
+        return False
+    with open("users.txt", "r") as f:
+        for line in f:
+            user, stored_hash = line.strip().split(",", 1)
+    if user == username
+        return verify_password(password< stored_hash)
+    return False
