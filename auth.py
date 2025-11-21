@@ -51,3 +51,14 @@ def user_exists(username):
             if stored_username == username:
                 return True
     return False
+
+def register_user(username, password):
+    if user_exists(username):
+        print("Username already exists.")
+        return False
+    hash_password = hash_password(password)
+    with open("users.txt", "a") as f:
+        f.write(f"{username}, {hash_password}\n")
+    print(f"User {username} registered succesfully.")
+    return True
+
