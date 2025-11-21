@@ -42,3 +42,12 @@ def register_user(username, password):
     print(f"User '{username}' registered.")
     return True
 
+def user_exists(username):
+    if not os.path.exists("user.txt"):
+        return False
+    with open("users.txt", "r") as f:
+        for line in f:
+            stored_username, _ = line.strip().split(",", 1)
+            if stored_username == username:
+                return True
+    return False
