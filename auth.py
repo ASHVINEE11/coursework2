@@ -124,7 +124,7 @@ def main():
         is_valid, error_msg = validate_username(username)
         if not is_valid:
             print(f"Error: {error_msg}")
-            continue  
+            continue   
 
         password = input("Enter a password: ").strip()
         # Validate password
@@ -135,10 +135,4 @@ def main():
 
         
         print(f"User '{username}' registered successfully!")
-
-
-
-
-
-
 
