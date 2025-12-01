@@ -31,3 +31,4 @@ def login_user(username, password):
 def migrate_users_from_file(filepath='DATA/users.txt'):
     """Migrate users from text file to database."""
     # ... migration logic ...
+    
