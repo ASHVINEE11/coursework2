@@ -6,17 +6,20 @@ def create_users_table(conn):
         username TEXT NOT NULL UNIQUE,
         password_hash TEXT NOT NULL,
         role TEXT DEFAULT 'user'
-    )
+    );
     """)
     conn.commit()
-    print("User table created successfully!")
+    print("Users table created successfully!")
 
 
 def create_cyber_incidents_table(conn):
     cursor = conn.cursor()
-    cursor.execute("DROP TABLE IF EXISTS cyber_incidents")  # optional during development
+    
+    # ❗ REMOVE THIS IN PRODUCTION — it deletes your data!
+    # cursor.execute("DROP TABLE IF EXISTS cyber_incidents")
+
     cursor.execute("""
-    CREATE TABLE cyber_incidents (
+    CREATE TABLE IF NOT EXISTS cyber_incidents (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         date TEXT,
         incident_type TEXT,
@@ -24,7 +27,7 @@ def create_cyber_incidents_table(conn):
         status TEXT,
         description TEXT,
         reported_by TEXT
-    )
+    );
     """)
     conn.commit()
     print("Cyber incidents table created successfully!")
@@ -40,7 +43,7 @@ def create_datasets_metadata_table(conn):
         columns INTEGER,
         uploaded_by TEXT,
         upload_date TEXT
-    )
+    );
     """)
     conn.commit()
     print("Datasets metadata table created successfully!")
@@ -57,7 +60,7 @@ def create_it_tickets_table(conn):
         status TEXT,
         description TEXT,
         created_at TEXT
-    )
+    );
     """)
     conn.commit()
     print("IT tickets table created successfully!")
