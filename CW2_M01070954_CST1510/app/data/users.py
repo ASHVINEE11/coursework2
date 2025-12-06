@@ -1,5 +1,10 @@
 from app.data.db import connect_database
 import sqlite3
+from app.data.schema import create_users_table
+from pathlib import Path
+DATA_DIR = Path("C:/Users/ashvi/OneDrive - Middlesex University/Desktop/CW2 CST1510")
+
+
 
 def get_user_by_username(username):
     """Retrieve user by username."""
@@ -25,18 +30,4 @@ def insert_user(username, password_hash, role='user'):
         print(f"User '{username}' already exists, skipping insert.")
     finally:
         conn.close()
-
-# ===== Test block =====
-if __name__ == "__main__":
-    print("Testing user functions...")
-    
-    username = "testuser"
-    password_hash = "hashedpassword123"
-
-    # Safe insert
-    insert_user(username, password_hash)
-
-    # Fetch and display user
-    user = get_user_by_username(username)
-    print("User fetched:", user)
 

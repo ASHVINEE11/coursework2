@@ -15,18 +15,18 @@ def create_users_table(conn):
 def create_cyber_incidents_table(conn):
     cursor = conn.cursor()
     
-    # ❗ REMOVE THIS IN PRODUCTION — it deletes your data!
-    # cursor.execute("DROP TABLE IF EXISTS cyber_incidents")
+    # ❌ WARNING: This deletes existing data — fine for development/testing
+    cursor.execute("DROP TABLE IF EXISTS cyber_incidents")
 
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS cyber_incidents (
+    CREATE TABLE cyber_incidents (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        date TEXT,
-        incident_type TEXT,
+        timestamp TEXT,
+        category TEXT,
         severity TEXT NOT NULL,
         status TEXT,
         description TEXT,
-        reported_by TEXT
+        incident_id TEXT
     );
     """)
     conn.commit()
@@ -35,6 +35,8 @@ def create_cyber_incidents_table(conn):
 
 def create_datasets_metadata_table(conn):
     cursor = conn.cursor()
+    # ❗ DROP TABLE is commented out to avoid accidental deletion
+    # cursor.execute("DROP TABLE IF EXISTS datasets_metadata")
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS datasets_metadata (
         dataset_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -66,7 +68,7 @@ def create_it_tickets_table(conn):
     print("IT tickets table created successfully!")
 
 
-def create_all_tables(conn):
+def create_all_tables(conn): 
     create_users_table(conn)
     create_cyber_incidents_table(conn)
     create_datasets_metadata_table(conn)

@@ -11,10 +11,10 @@ def main():
     # 1. Setup database
     conn = connect_database()
     create_all_tables(conn)
-    conn.close()
+    
     
     # 2. Migrate users
-    migrate_users_from_file()
+    migrate_users_from_file(conn)
     
     # 3. Test authentication
     success, msg = register_user("alice", "SecurePass123!", "analyst")
@@ -25,18 +25,20 @@ def main():
     
     # 4. Test CRUD
     incident_id = insert_incident(
+        conn,
         "2024-11-05",
         "Phishing",
         "High",
         "Open",
-        "Suspicious email detected",
-        "alice"
-    )
+        "Suspicious email detected"
+        )
     print(f"Created incident #{incident_id}")
     
     # 5. Query data
     df = get_all_incidents()
     print(f"Total incidents: {len(df)}")
+
+    
 
 if __name__ == "__main__":
     main()

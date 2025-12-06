@@ -97,7 +97,7 @@ def migrate_users_from_file(conn, filepath=DATA_DIR / "users.txt"):
     if not filepath.exists():
         print(f"⚠️  File not found: {filepath}")
         print("   No users to migrate.")
-        return
+        return 0
 
     cursor = conn.cursor()
     migrated_count = 0
@@ -127,28 +127,25 @@ def migrate_users_from_file(conn, filepath=DATA_DIR / "users.txt"):
 
     conn.commit()
     cursor.close()
-    conn.close()
     print(f"✅ Migrated {migrated_count} users from {filepath.name}")
+    return migrated_count
 
 if __name__ == "__main__":
     conn = connect_database()
     create_users_table(conn)
     migrate_users_from_file(conn)
     # Verify users were migrated
-conn = connect_database()
-cursor = conn.cursor()
+    cursor = conn.cursor()
 
-# Query all users
-cursor.execute("SELECT id, username, role FROM users")
-users = cursor.fetchall()
+    # Query all users
+    cursor.execute("SELECT id, username, role FROM users")
+    users = cursor.fetchall()
 
-print(" Users in database:")
-print(f"{'ID':<5} {'Username':<15} {'Role':<10}")
-print("-" * 35)
-for user in users:
-    print(f"{user[0]:<5} {user[1]:<15} {user[2]:<10}")
+    print(" Users in database:")
+    print(f"{'ID':<5} {'Username':<15} {'Role':<10}")
+    print("-" * 35)
+    for user in users:
+        print(f"{user[0]:<5} {user[1]:<15} {user[2]:<10}")
 
-print(f"\nTotal users: {len(users)}")
-conn.close()
-
-    
+    print(f"\nTotal users: {len(users)}")
+    conn.close()

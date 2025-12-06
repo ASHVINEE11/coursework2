@@ -44,10 +44,13 @@ def register_user(username, password):
     return True
 
 def user_exists(username):
-    if not os.path.exists("user.txt"):
+    if not os.path.exists("users.txt"):
         return False
     with open("users.txt", "r") as f:
         for line in f:
+            line = line.strip()
+            if not line or "," not in line:
+                continue 
             stored_username, _ = line.strip().split(",", 1)
             if stored_username == username:
                 return True
@@ -59,48 +62,31 @@ def login_user(username, password):
     with open("users.txt", "r") as f:
         for line in f:
             user, stored_hash = line.strip().split(",", 1)
-    if user == username:
-        return verify_password(password< stored_hash)
+            if user == username:
+             return verify_password(password, stored_hash)
     return False
 
 def validate_username(username):
-    username = ("Enter username:")
-    if len(username) < 3:
-        return False
-    print("Username must be at least 3 characters long.")
-    if username.isalnum() == False:
-        print("username can only contains numbers and letters.")
-        return False
-    print("Username is valid.")
+    
+    if len(username) < 3 or len(username) > 20:
+       return False, "Username must be at least 3 or at most 20 characters long."
+       
+    
+    if not username.isalnum():
+        return False, "username can only contains numbers and letters."
+    return True, None     
+   
 
 def validate_password(password):
-    password = ("Enter password: ")
-    if len(password) < 8:
-        print("Password must be at least 8 characters long.")
-    else:
-        print("password is valid")
-        return
-    has_letter == False
-    for c in password:
-        has_letter = True
-        break
-    if has_letter == False:
-        print("Password must contain at  least one letter ")
-        return
-        has_digit = False
-        for c in password:
-            if c.isdigit():
-                has_digit = True
-                break
-        if has_digit == False:
-            print("Password must contain at least one number.")
-            return False 
-        print("Password is valid!")
-        return True
+    
+    if len(password) < 8 or len(password) > 50:
+       return False,"Password must be between 8 and 50 characters long."
+    return True, None
+        
 
 def display_menu():
     """Displays the main menu options."""
-    print("\n" + "="*50)
+    print("\n" + "="*5)
     print(" MULTI-DOMAIN INTELLIGENCE PLATFORM")
     print(" Secure Authentication System")
     print("="*50)
