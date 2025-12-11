@@ -40,20 +40,23 @@ def load_csv_to_table(conn, csv_path, table_name):
     return len(df)
 
 
-#if __name__ == "__main__":
+
+
+if __name__ == "__main__":
     # Base folder
     base_folder = r"C:\Users\ashvi\OneDrive - Middlesex University\Desktop\CW2 CST1510\CW2_M01070954_CST1510\DATA"
 
-    # CSV and database files
-    csv_file = "cyber_incidents_csv.csv"
+    # Database file
     db_file = "intelligence_platform.db"
-
-    # Full paths
-    csv_path = os.path.join(base_folder, csv_file)
     db_path = os.path.join(base_folder, db_file)
 
     # Create database connection
     conn = create_engine(f"sqlite:///{db_path}")
 
-    # Load CSV into database table
-    load_csv_to_table(conn, csv_path, "cyber_incidents")
+    # Load Cyber Incidents 
+    cyber_csv = os.path.join(base_folder, "cyber_incidents_csv.csv")
+    load_csv_to_table(conn, cyber_csv, "cyber_incidents")
+
+    # Load IT Ticketss
+    tickets_csv = os.path.join(base_folder, "it_tickets(1).csv")
+    load_csv_to_table(conn, tickets_csv, "it_tickets")

@@ -30,19 +30,20 @@ def insert_incident(conn, timestamp, category, severity, status, description):
     conn.close()
     return incident_id
 
-
-
-    
-    
 def get_all_incidents():
     """Get all incidents as DataFrame."""
     conn = connect_database()
     df = pd.read_sql_query(
-        "SELECT * FROM cyber_incidents ORDER BY id DESC",
+        "SELECT * FROM cyber_incidents ORDER BY timestamp DESC",
         conn
     )
     conn.close()
     return df
+
+    
+    
+
+    
 
 def update_incident_status(conn, incident_id, new_status):
     """

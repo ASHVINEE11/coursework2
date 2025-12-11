@@ -53,15 +53,16 @@ def create_datasets_metadata_table(conn):
 
 def create_it_tickets_table(conn):
     cursor = conn.cursor()
+    cursor.execute("DROP TABLE IF EXISTS it_tickets")
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS it_tickets (
+    CREATE TABLE it_tickets (
         ticket_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        submitted_by TEXT NOT NULL,
-        issue_type TEXT,
         priority TEXT NOT NULL,
-        status TEXT,
         description TEXT,
-        created_at TEXT
+        status TEXT,
+        assigned_to TEXT,
+        created_at TEXT,
+        resolution_time_hours INTEGER
     );
     """)
     conn.commit()
