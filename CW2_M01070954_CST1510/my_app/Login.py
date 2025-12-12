@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 import streamlit as st
-from auth import register_user, user_exists, login_user, validate_password, validate_username
+from CW2_M01070954_CST1510.auth import register_user, user_exists, login_user, validate_password, validate_username
 
 st.set_page_config(page_title="Intellligence Platform", layout= "wide")
 st.title("Login to Intelligence Platform")

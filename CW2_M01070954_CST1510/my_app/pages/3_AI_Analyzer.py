@@ -141,7 +141,7 @@ with tab2:
         
         # Call Gemini API
         response = client.models.generate_content_stream(
-            model = "gemini-2.5-flash",
+            model = "gemini-1.5-flash", 
             config= types.GenerateContentConfig(
                 system_instruction= "You are an IT support expert."
             ),
