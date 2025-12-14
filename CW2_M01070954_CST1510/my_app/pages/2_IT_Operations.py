@@ -96,16 +96,21 @@ with chart_col2:
 st.markdown("---")
 
 st.subheader("🔀 Navigate")
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
+
 with col1:
-    if st.button(" 📊 Back to Cybersecurity Dashboard"):
-        st.switch_page("pages/1_Cybersecurity.py")
+    if st.button("👨🏻‍💻Datascience Dashboard"):
+        st.switch_page("pages/3_Datascience.py")
 
 with col2:
-    if st.button("🤖 AI Analyser"):
-        st.switch_page("pages/3_AI_Analyzer.py")
+    if st.button(" 📊 Cybersecurity Dashboard"):
+        st.switch_page("pages/1_Cybersecurity.py")
 
 with col3:
+    if st.button("🤖 AI Analyser"):
+        st.switch_page("pages/4_AI_Analyzer.py")
+
+with col4:
     if st.button("Log out"):
         st.session_state.logged_in = False
         st.session_state.username = ""

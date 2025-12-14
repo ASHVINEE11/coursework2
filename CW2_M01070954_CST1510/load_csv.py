@@ -60,3 +60,7 @@ if __name__ == "__main__":
     # Load IT Ticketss
     tickets_csv = os.path.join(base_folder, "it_tickets(1).csv")
     load_csv_to_table(conn, tickets_csv, "it_tickets")
+
+    # Load datasets
+    datasets_csv = os.path.join(base_folder, "datasets_metadata.csv")
+    load_csv_to_table(conn,datasets_csv, "datasets_metadata")

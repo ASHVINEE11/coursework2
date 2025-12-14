@@ -42,7 +42,8 @@ with tab_login:
             st.session_state.username = ""
             st.experimental_rerun()
 
-# --- REGISTER TAB ---
+# REGISTER 
+
 with tab_register:
     st.subheader("Register a new account")
     

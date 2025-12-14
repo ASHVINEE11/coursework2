@@ -116,12 +116,12 @@ if submitted:
 st.subheader("🔀 Navigate")
 col1, col2, col3 = st.columns(3)
 with col1:
-    if st.button("Go to IT Operations Dashboard 🎫 "):
+    if st.button("IT Operations Dashboard 🎫 "):
         st.switch_page("pages/2_IT_Operations.py")
 
 with col2:
     if st.button("🤖 AI Analyser"):
-        st.switch_page("pages/3_AI_Analyzer.py")
+        st.switch_page("pages/4_AI_Analyzer.py")
 
 with col3:
     if st.button("Log out"):
